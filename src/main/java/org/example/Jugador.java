@@ -3,13 +3,29 @@ package org.example;
 import java.util.ArrayList;
 
 public class Jugador {
-    ArrayList <Dado> cubilete;
+
+    private int puntuaje;
+    private Cubilete cubileteJugador;
+    private boolean ganador;
     public Jugador() {
 
-        int puntuaje;
-        cubilete = new ArrayList<Dado>();
+        puntuaje=0;
+
+        this.cubileteJugador;
+
+        ganador=false;
 
     }
 
+    public int obtenerPuntuaje(){
 
+        return puntuaje;
+
+    }
+
+    public int sumarPuntuaje(){
+
+        return this.puntuaje + obtenerPuntuaje();
+
+    }
 }
