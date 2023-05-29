@@ -2,10 +2,11 @@ package org.example;
 
 public class DadoOvalo extends DadoFigura{
     private int multiplicador;
-    private String figura;
+
     public DadoOvalo() {
      super();
-     figura = "Ovalo";
+     super.setFigura("Ovalo");
+     super.setCaras(7);
      multiplicador=0;
     }
 
@@ -19,5 +20,15 @@ public class DadoOvalo extends DadoFigura{
 
     }
 
+    public void obtenerMultiplicador(){
 
+        String color=super.getColor();
+
+        System.out.println(color);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" multiplicador= "+multiplicador+"]";
+    }
 }

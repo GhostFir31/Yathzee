@@ -5,9 +5,11 @@ import java.util.Random;
 
 public class Cubilete {
 
-    ArrayList<Dado> cubilete = new ArrayList<>();
+    ArrayList<Dado> cubilete ;
 
     public Cubilete() {
+
+         cubilete=new ArrayList<>();
 
     }
     public void generarCubilete() {
@@ -39,5 +41,10 @@ public class Cubilete {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Cubilete{" +
+                 cubilete +
+                '}';
+    }
 }

@@ -1,16 +1,15 @@
 package org.example;
 
-
 public class Jugador {
 
     private int puntuaje;
-    private Cubilete cubileteJugador;
+    private Cubilete cubileteJugador=new Cubilete();
     private boolean ganador;
     public Jugador() {
 
         puntuaje=0;
 
-        this.cubileteJugador;
+        cubileteJugador.generarCubilete();
 
         ganador=false;
 
