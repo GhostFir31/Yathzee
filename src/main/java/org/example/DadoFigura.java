@@ -5,6 +5,7 @@ public class DadoFigura extends Dado{
     public DadoFigura() {
 
         super();
+
         Figura = "";
     }
 
@@ -15,5 +16,6 @@ public class DadoFigura extends Dado{
     public void setFigura(String figura) {
         Figura = figura;
     }
+
 
 }

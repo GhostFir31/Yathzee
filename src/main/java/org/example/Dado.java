@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Random;
 
-public abstract class Dado {
+public  class Dado {
 
     private int caras;
     private int valor;
@@ -48,11 +48,18 @@ public abstract class Dado {
         this.caraVisible = caraVisible;
     }
 
-    public void obtenerCara() {
+    public void generarCara() {
 
         Random numeroRandom = new Random();
 
         this.caraVisible = numeroRandom.nextInt(6)+1;
+    }
+
+    public  void generarCaras(){
+
+
+
+
     }
 
 
