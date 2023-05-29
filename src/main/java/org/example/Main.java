@@ -7,7 +7,7 @@ public class Main {
 
         Cubilete cubilete = new Cubilete();
         cubilete.generarCubilete();
-        System.out.println(cubilete);
+        System.out.println(cubilete+"cambioprueba");
 
     }
 }
