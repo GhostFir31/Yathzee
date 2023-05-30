@@ -1,14 +1,20 @@
 package org.example;
 
-public class DadoFigura extends Dado{
+public class DadoFigura extends Dado {
     private String figura;
+
     public DadoFigura() {
 
         super();
 
         figura = generarFigura();
     }
+    public DadoFigura(String figura) {
 
+        super(7);
+
+        this.figura = figura;
+    }
     public String getFigura() {
         return figura;
     }
@@ -16,9 +22,12 @@ public class DadoFigura extends Dado{
     public void setFigura(String figura) {
         figura = figura;
     }
+
     public String generarFigura() {
-        String figura="";
-        int figuraAleatoria = numeroRandom.nextInt(6)+1;
+
+        String figura = "";
+
+        int figuraAleatoria = super.getCaraVisible();
 
         switch (figuraAleatoria) {
             case 1 -> figura = "Circulo";
@@ -33,6 +42,11 @@ public class DadoFigura extends Dado{
 
     @Override
     public String toString() {
-        return super.toString()+" Figura= "+figura;
+        if(super.getCaraVisible() != 0) {
+            return super.toString() + " Figura= " + figura + "]";
+        }else{
+
+            return super.toString()+" Figura= " + figura;
+        }
     }
 }

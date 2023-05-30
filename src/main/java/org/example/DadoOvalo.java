@@ -4,12 +4,16 @@ public class DadoOvalo extends DadoFigura{
     private int multiplicador;
 
     public DadoOvalo() {
-     super();
-     super.setFigura("Ovalo");
-     super.setCaras(7);
+
+     super("Ovalo");
+
      multiplicador=0;
     }
 
+    public void determinarMultiplicador(){
+
+
+    }
     public int getMultiplicador() {
         return multiplicador;
     }
@@ -29,6 +33,6 @@ public class DadoOvalo extends DadoFigura{
 
     @Override
     public String toString() {
-        return super.toString()+" multiplicador= "+multiplicador+"]";
+        return super.toString()+" multiplicador = " + multiplicador +"]";
     }
 }

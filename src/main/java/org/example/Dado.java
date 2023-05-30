@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Random;
 
-public class Dado {
+public abstract class Dado {
     Random numeroRandom = new Random();
     private int caras;
     private String color;
@@ -12,6 +12,11 @@ public class Dado {
         caras = 6;
         color = generarColor();
         caraVisible = generarCara();
+    }
+
+    public Dado(int numeroCaras) {
+        this.caras =numeroCaras;
+        color = generarColor();
     }
 
     public int getCaras() {
@@ -42,14 +47,14 @@ public class Dado {
 
     public int generarCara() {
 
-       return caraVisible = numeroRandom.nextInt(6) + 1;
+       return caraVisible = numeroRandom.nextInt(getCaras()) + 1;
     }
 
     public String generarColor() {
 
         String color="";
 
-        int colorAleatorio = numeroRandom.nextInt(6)+1;
+        int colorAleatorio = numeroRandom.nextInt(7)+1;
 
         switch (colorAleatorio) {
             case 1 -> color = "Rojo";
@@ -58,6 +63,7 @@ public class Dado {
             case 4 -> color = "Amarillo";
             case 5 -> color = "Negro";
             case 6 -> color = "Naranja";
+            case 7 -> color = "Rosa";
         }
 
         return color;
@@ -66,10 +72,15 @@ public class Dado {
 
     @Override
     public String toString() {
-        return "**[Dado " +
-                ", caras=" + caras +
-                ", color='" + color + '\'' +
-                ", caraVisible=" + caraVisible
-                ;
+        if (caraVisible != 0) {
+            return "[" +
+                    " caras= " + caras +
+                    " color= " + color +
+                    " caraVisible= " + caraVisible;
+        } else {
+            return "[" +
+                    " caras= " + caras +
+                    " color= " + color ;
+        }
     }
 }
