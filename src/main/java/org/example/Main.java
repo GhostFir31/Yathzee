@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -9,8 +11,8 @@ public class Main {
         Scanner leer = new Scanner(System.in);
 
         int opcion;
-
-        //verficacionFuncionamiento();
+        int dadoElegido;
+        int cantidadDadosElegidos;
 
 
         do {
@@ -20,20 +22,62 @@ public class Main {
             System.out.println("2.Salir");
 
             opcion = leer.nextInt();
+
             switch (opcion) {
 
                 case 1:
+                    Jugador jugador1;
+                    Jugador jugador2;
+                    do {
+                        LogicaYathzee logicaJuego = new LogicaYathzee();
 
-                    LogicaYathzee logicaJuego = new LogicaYathzee();
+                        ArrayList<Dado> dadosTomados;
 
-                    int numeroJugador=0;
+                        ArrayList<Dado> cubileteJugadorEnTurno = new ArrayList<>();
 
-                    Jugador jugadorEnTurno;
+                        Jugador jugadorEnTurno;
 
-                    Cubilete cubileteJugadorEnTurno;
+                        int intentos = 0;
+
+                        dadosTomados = new ArrayList<>(Collections.nCopies(5, new DadoNumerico()));
+
+                        cubileteJugadorEnTurno = new ArrayList<>();
+
+                        jugadorEnTurno = logicaJuego.getJugador(logicaJuego.getTurno());
+
+                        do {
+
+                            logicaJuego.generarCubilete(jugadorEnTurno);
+
+                            cubileteJugadorEnTurno = jugadorEnTurno.getCubileteJugador();
+
+                            System.out.println(cubileteJugadorEnTurno);
+
+                            System.out.println("Cuantos dados quieres guardar:");
+
+                            cantidadDadosElegidos = leer.nextInt();
+
+                            for (int i = 0; i < cantidadDadosElegidos; i++) {
+
+                                System.out.println("Escoge el dado que guardar:");
+
+                                dadoElegido = leer.nextInt();
+
+                                dadosTomados.set(i, cubileteJugadorEnTurno.get(dadoElegido));
+
+                            }
+                            intentos++;
+
+                        } while (intentos <= 3);
 
 
-                    System.out.println("Jugador escoge los dados que quieres guardar");
+
+                        logicaJuego.cambiarTurno();
+
+                        jugador1 = logicaJuego.getJugador(0);
+                        jugador2 = logicaJuego.getJugador(1);
+
+                    } while (!jugador1.getGanador() || !jugador2.getGanador());
 
 
                     break;
@@ -47,31 +91,4 @@ public class Main {
     }
 
 
-    public static void verficacionFuncionamiento() {
-
-        LogicaYathzee logicaJuego = new LogicaYathzee();
-
-        Jugador jugador1 = logicaJuego.getJugador(0);
-
-        Jugador jugador2 = logicaJuego.getJugador(1);
-
-        Cubilete cubileteJugador1 = jugador1.getCubileteJugador();
-
-        Cubilete cubileteJugador2 = jugador2.getCubileteJugador();
-
-        for (int i = 0; i < cubileteJugador1.cubilete.size(); i++) {
-
-            System.out.println("Dado " + (i + 1) + cubileteJugador1.getCubilete(i));
-
-        }
-
-        System.out.println(" ");
-
-        for (int i = 0; i < cubileteJugador2.cubilete.size(); i++) {
-
-            System.out.println("Dado " + (i + 1) + cubileteJugador2.getCubilete(i));
-
-        }
-
-    }
 }

@@ -1,59 +1,63 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Jugador implements HerramientasCubilete {
+public class Jugador {
 
     private Random valorRandom = new Random();
     private int puntuaje;
-    private Cubilete cubileteJugador = new Cubilete();
-    private boolean tipoCubilete;
+    private ArrayList <Dado> cubileteJugador ;
+    private int tipoCubilete;
     private boolean ganador;
 
     public Jugador() {
 
         puntuaje = 0;
 
-        cubileteJugador = new Cubilete();
+        cubileteJugador = new ArrayList<>();
 
-        tipoCubilete = false;
+        tipoCubilete = valorRandom.nextInt(2)+1;
 
         ganador = false;
 
     }
 
-    public void generarCubileteJugador() {
+    public boolean getGanador() {
+        return ganador;
+    }
 
-        cubileteJugador.generarCubilete();
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
+    }
+
+    public void addDado(Dado dado){
+
+      cubileteJugador.add(dado);
 
     }
 
-    public void generarTipoCubilete() {
+    public Dado getDado(int i){
 
-        this.tipoCubilete = valorRandom.nextBoolean();
-
-    }
-
-    public boolean comprobarTipoCubilete(Jugador jugador1, Jugador jugador2) {
-
-        return jugador1.getTipocubilete() != jugador2.getTipocubilete();
+     return cubileteJugador.get(i);
 
     }
 
-    public Cubilete getCubileteJugador() {
+    public ArrayList <Dado> getCubileteJugador(){
 
-        return cubileteJugador;
+     return cubileteJugador;
+
 
     }
 
-    public boolean getTipocubilete() {
+    public int getTipoCubilete() {
 
         return tipoCubilete;
     }
 
     public int obtenerPuntuaje() {
 
-        return puntuaje;
+        return this.puntuaje;
 
     }
 
@@ -62,4 +66,15 @@ public class Jugador implements HerramientasCubilete {
         return this.puntuaje + obtenerPuntuaje();
 
     }
+
+    @Override
+    public String toString() {
+        return " Jugador {" +
+                " puntuaje= " + puntuaje +
+                " cubileteJugador= " + cubileteJugador +
+                " tipoCubilete= " + tipoCubilete +
+                " ganador= " + ganador +
+                 "}";
+    }
+
 }

@@ -9,14 +9,18 @@ public abstract class Dado {
     private int caraVisible;
 
     public Dado() {
+
         caras = 6;
         color = generarColor();
         caraVisible = generarCara();
+
     }
 
     public Dado(int numeroCaras) {
+
         this.caras =numeroCaras;
         color = generarColor();
+
     }
 
     public int getCaras() {
