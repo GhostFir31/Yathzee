@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +13,6 @@ public class Main {
         int dadoElegido;
         int cantidadDadosElegidos;
 
-
         do {
 
             System.out.println("*****Menu*****");
@@ -26,59 +24,56 @@ public class Main {
             switch (opcion) {
 
                 case 1:
-                    Jugador jugador1;
-                    Jugador jugador2;
+
+                    ArrayList<Dado> dadosTomados = new ArrayList<>();
+
+                    ArrayList<Dado> cubileteJugadorEnTurno = new ArrayList<>();
+
+                    Jugador jugadorEnTurno;
+
+                    LogicaYathzee logicaJuego = new LogicaYathzee();
+
+                    jugadorEnTurno = logicaJuego.getJugador(logicaJuego.getTurno());
+    
                     do {
-                        LogicaYathzee logicaJuego = new LogicaYathzee();
 
-                        ArrayList<Dado> dadosTomados;
+                        logicaJuego.generarCubilete(jugadorEnTurno, dadosTomados);
 
-                        ArrayList<Dado> cubileteJugadorEnTurno = new ArrayList<>();
+                        cubileteJugadorEnTurno = jugadorEnTurno.getCubileteJugador();
 
-                        Jugador jugadorEnTurno;
+                        jugadorEnTurno.mostrarCubilete();
 
-                        int intentos = 0;
+                        System.out.println("Cuantos dados quieres guardar de los 5:");
 
-                        dadosTomados = new ArrayList<>(Collections.nCopies(5, new DadoNumerico()));
+                        cantidadDadosElegidos = leer.nextInt();
 
-                        cubileteJugadorEnTurno = new ArrayList<>();
-
-                        jugadorEnTurno = logicaJuego.getJugador(logicaJuego.getTurno());
-
-                        do {
-
-                            logicaJuego.generarCubilete(jugadorEnTurno);
-
-                            cubileteJugadorEnTurno = jugadorEnTurno.getCubileteJugador();
-
-                            System.out.println(cubileteJugadorEnTurno);
-
-                            System.out.println("Cuantos dados quieres guardar:");
-
-                            cantidadDadosElegidos = leer.nextInt();
+                        if (cantidadDadosElegidos < 6) {
 
                             for (int i = 0; i < cantidadDadosElegidos; i++) {
 
-                                System.out.println("Escoge el dado que guardar:");
+                                System.out.println("Escoge el dado que guardar excepto el dado ovalo:");
 
                                 dadoElegido = leer.nextInt();
+                                if (dadoElegido < 6) {
+                                    dadosTomados.add(cubileteJugadorEnTurno.get(dadoElegido - 1));
+                                } else {
+                                    i--;
+                                    System.out.println("el dado ovalo solo es un multiplicador no lo puedes guardar");
+                                }
+                            }
 
-                                dadosTomados.set(i, cubileteJugadorEnTurno.get(dadoElegido));
+                            for (int i = 0; i < dadosTomados.size(); i++) {
+
+                                System.out.println("Dado Tomado " + (i + 1) + dadosTomados.get(i));
 
                             }
-                            intentos++;
+                        } else {
+                            System.out.println("No puedes guardar mas de 5 el 6to es un multiplicador");
+                        }
 
-                        } while (intentos <= 3);
+                    } while (dadosTomados.size() != 5);
 
-
-
-                        logicaJuego.cambiarTurno();
-
-                        jugador1 = logicaJuego.getJugador(0);
-                        jugador2 = logicaJuego.getJugador(1);
-
-                    } while (!jugador1.getGanador() || !jugador2.getGanador());
-
+                    logicaJuego.cambiarTurno();
 
                     break;
 
@@ -89,6 +84,5 @@ public class Main {
             }
         } while (opcion != 2);
     }
-
 
 }

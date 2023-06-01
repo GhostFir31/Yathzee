@@ -7,7 +7,7 @@ public class DadoOvalo extends DadoFigura{
 
      super("Ovalo");
 
-     multiplicador=0;
+     multiplicador=4;
     }
 
     public void determinarMultiplicador(){

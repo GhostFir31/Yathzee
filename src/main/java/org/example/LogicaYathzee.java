@@ -2,27 +2,33 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class LogicaYathzee {
 
     ArrayList<Jugador> jugadores = new ArrayList<>();
     Random valorAleatorio = new Random();
+
+    Scanner leer = new Scanner(System.in);
+
     int turno;
 
     public LogicaYathzee() {
 
         generarJugadores();
 
-        turno = 1; //true jugador 1 false jugador 2
+        turno = 0; // true jugador 1 false jugador 2
 
     }
 
-    public void generarCubilete(Jugador jugador) {
+    public void generarCubilete(Jugador jugador, ArrayList<Dado> dadosTomados) {
+
+        jugador.borrarDados();
 
         switch (jugador.getTipoCubilete()) {
 
             case 1 -> {
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 5 - dadosTomados.size(); i++) {
 
                     jugador.addDado(new DadoNumerico());
 
@@ -30,7 +36,7 @@ public class LogicaYathzee {
                 jugador.addDado(new DadoOvalo());
             }
             case 2 -> {
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 5 - dadosTomados.size(); i++) {
 
                     jugador.addDado(new DadoFigura());
 
@@ -42,15 +48,33 @@ public class LogicaYathzee {
         }
     }
 
+    public int evaluarJugada(ArrayList<Dado> dadosTomados) {
+
+        int puntuaje = 0;
+
+        for (int i = 0; i < dadosTomados.size(); i++) {
+
+            if (dadosTomados.get(i).getCaraVisible() == dadosTomados.get(0).getCaraVisible()) {
+
+                puntuaje = dadosTomados.get(i).getCaraVisible() + puntuaje;
+
+            }
+
+        }
+        return puntuaje;
+    }
+
     public Jugador getJugador(int i) {
 
         return jugadores.get(i);
 
     }
-   public int getTurno(){
+
+    public int getTurno() {
 
         return turno;
-   }
+    }
+
     public void cambiarTurno() {
 
         if (getTurno() == 1) {
@@ -78,14 +102,5 @@ public class LogicaYathzee {
         jugadores.add(jugador2);
 
     }
-public void determinarJugada(Jugador jugador){
-
-ArrayList<Dado> cubilete = new ArrayList<>();
-
-cubilete=jugador.getCubileteJugador();
-
-
-
-}
 
 }

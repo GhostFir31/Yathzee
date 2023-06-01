@@ -7,7 +7,7 @@ public class Jugador {
 
     private Random valorRandom = new Random();
     private int puntuaje;
-    private ArrayList <Dado> cubileteJugador ;
+    private ArrayList<Dado> cubileteJugador;
     private int tipoCubilete;
     private boolean ganador;
 
@@ -17,7 +17,7 @@ public class Jugador {
 
         cubileteJugador = new ArrayList<>();
 
-        tipoCubilete = valorRandom.nextInt(2)+1;
+        tipoCubilete = valorRandom.nextInt(2) + 1;
 
         ganador = false;
 
@@ -31,22 +31,27 @@ public class Jugador {
         this.ganador = ganador;
     }
 
-    public void addDado(Dado dado){
+    public void addDado(Dado dado) {
 
-      cubileteJugador.add(dado);
-
-    }
-
-    public Dado getDado(int i){
-
-     return cubileteJugador.get(i);
+        cubileteJugador.add(dado);
 
     }
 
-    public ArrayList <Dado> getCubileteJugador(){
+    public void borrarDados() {
 
-     return cubileteJugador;
+        cubileteJugador.clear();
 
+    }
+
+    public Dado getDado(int i) {
+
+        return cubileteJugador.get(i);
+
+    }
+
+    public ArrayList<Dado> getCubileteJugador() {
+
+        return cubileteJugador;
 
     }
 
@@ -74,7 +79,26 @@ public class Jugador {
                 " cubileteJugador= " + cubileteJugador +
                 " tipoCubilete= " + tipoCubilete +
                 " ganador= " + ganador +
-                 "}";
+                "}";
     }
 
+    public void mostrarCubilete() {
+
+        for (int i = 0; i < cubileteJugador.size(); i++) {
+
+           if(i<5){
+
+            System.out.println("Dado " + (i + 1) + cubileteJugador.get(i));
+
+           }else{
+
+            System.out.println("Dado Ovalo =" + cubileteJugador.get(i));
+
+           }
+
+        }
+
+    }
+
+    
 }
